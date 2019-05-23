@@ -17,7 +17,7 @@ public class AccountService {
    public List<Account> getAllAccount(){
 
         Iterable<Account> acclist= accountRepo.findAll();
-       ArrayList<Account> x= (ArrayList<Account>) acclist;
-        return x;
+       ArrayList<Account> xy= (ArrayList<Account>) acclist;
+        return xy;
     }
 }
