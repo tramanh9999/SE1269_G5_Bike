@@ -15,22 +15,22 @@ public class AccountController {
 
     @Autowired
     AccountService accountService;
-@GetMapping(value="/list", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    public List<Account> all(){
-  return  accountService.all();
-    }
-    @PutMapping(value="/insert/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    public void  insert(@PathVariable("id") int id ){
-         accountService.deleteById(id);
+
+    @GetMapping(value = "/list", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<Account> all() {
+        return accountService.all();
     }
 
+    @PutMapping(value = "/insert/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public void insert(@PathVariable("id") int id) {
+        accountService.deleteById(id);
+    }
 
 
-    @PostMapping(value = "/update/{id}",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    public void  update(@PathVariable("id") int id, @RequestBody Account a ){
+    @PostMapping(value = "/update/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public void update(@PathVariable("id") int id, @RequestBody Account a) {
         accountService.updateById(id, a);
     }
-
 
 
 }
