@@ -16,7 +16,7 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
-    @GetMapping(value = "/list", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/list")
     public List<Account> all() {
         return accountService.all();
     }
