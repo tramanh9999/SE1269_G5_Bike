@@ -12,6 +12,10 @@ public class Account {
     int id;
     @Column(name = "email", length = 255)
     String email;
+    @Column(name = "phone", length = 255)
+    String phone;
+    @Column(name = "balance", length = 255)
+    String balance;
 
     public int getId() {
         return id;
@@ -44,10 +48,7 @@ public class Account {
     public void setBalance(String balance) {
         this.balance = balance;
     }
-    @Column(name = "phone", length = 255)
-    String phone;
-    @Column(name = "balance", length = 255)
-    String balance;
+
 
 
 

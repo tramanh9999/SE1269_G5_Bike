@@ -8,16 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class AccountService {
+public interface AccountService {
 
-    @Autowired
-    AccountRepository accountRepo;
-
-
-   public List<Account> getAllAccount(){
-
-        Iterable<Account> acclist= accountRepo.findAll();
-       ArrayList<Account> xyz= (ArrayList<Account>) acclist;
-        return xyz;
-    }
+   public List<Account> add();
 }
