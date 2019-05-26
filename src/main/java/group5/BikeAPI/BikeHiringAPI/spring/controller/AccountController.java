@@ -3,9 +3,7 @@ package group5.BikeAPI.BikeHiringAPI.spring.controller;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import group5.BikeAPI.BikeHiringAPI.spring.service.AccountService;
 
 import java.awt.*;
@@ -19,12 +17,20 @@ public class AccountController {
     AccountService accountService;
 @GetMapping(value="/list", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public List<Account> all(){
-  return  accountService.getAllAccount();
+  return  accountService.all();
     }
-    @PostMapping(value="/add", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    public List<Account> insert(){
-        return  accountService.a();
+    @PutMapping(value="/insert/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    public void  insert(@PathVariable("id") int id ){
+         accountService.deleteById(id);
     }
+
+
+
+    @PostMapping(value = "/update/{id}",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    public void  update(@PathVariable("id") int id, @RequestBody Account a ){
+        accountService.updateById(id, a);
+    }
+
 
 
 }

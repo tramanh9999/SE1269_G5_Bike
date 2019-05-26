@@ -10,5 +10,8 @@ import java.util.List;
 @Service
 public interface AccountService {
 
-   public List<Account> add();
+   public List<Account> all();
+   public void deleteById(int id);
+    public void updateById(int id, Account a);
+
 }

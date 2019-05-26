@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AccountServiceImpl implements AccountService{
+public  class AccountServiceImpl implements AccountService{
     @Autowired
     AccountRepository accountRepo;
 
@@ -17,5 +17,22 @@ public abstract class AccountServiceImpl implements AccountService{
         Iterable<Account> acclist= accountRepo.findAll();
         ArrayList<Account> xyz= (ArrayList<Account>) acclist;
         return xyz;
+    }
+
+
+
+    @Override
+    public void deleteById(int id) {
+        accountRepo.deleteById(id);
+
+    }
+
+    @Override
+    public void updateById(int id, Account a) {
+
+        if(id== a.getId()){
+            accountRepo.save(a);
+        }
+
     }
 }
