@@ -20,17 +20,21 @@ public class AccountController {
     public List<Account> all() {
         return accountService.all();
     }
-
-    @PutMapping(value = "/insert/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public void insert(@PathVariable("id") int id) {
-        accountService.deleteById(id);
+    @PutMapping(value = "/insert/{id}")
+    public void insert(@PathVariable("id") int id, Account a) {
+        accountService.insert(a);
     }
 
 
-    @PostMapping(value = "/update/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(value = "/update/{id}")
     public void update(@PathVariable("id") int id, @RequestBody Account a) {
         accountService.updateById(id, a);
     }
 
 
+
+    @DeleteMapping(value = "/delete/{id}")
+    public void delete(@PathVariable("id") int id){
+        accountService.deleteById(id);
+    }
 }

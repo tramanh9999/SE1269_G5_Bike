@@ -20,6 +20,11 @@ public  class AccountServiceImpl implements AccountService{
         return xyz;
     }
 
+    @Override
+    public void insert(Account a) {
+        accountRepo.save(a);
+
+    }
 
 
     @Override

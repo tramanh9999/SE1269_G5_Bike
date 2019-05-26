@@ -1,15 +1,14 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.annotation.Generated;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Account")
 public class Account {
     @Id
     int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "email", length = 255)
     String email;
     @Column(name = "phone", length = 255)
