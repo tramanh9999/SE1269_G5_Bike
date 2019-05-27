@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Host {
     @Id
     int id;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "email", length = 255)
     String email;
     @Column(name = "phone", length = 255)

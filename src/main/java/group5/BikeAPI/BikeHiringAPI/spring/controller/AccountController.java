@@ -31,20 +31,22 @@ public class AccountController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "All accounts retrieved successfully"),
             @ApiResponse(code = 401, message = "Not authorized to access this data"),
-            @ApiResponse(code = 400, message = "This data is forbidden"),
+            @ApiResponse(code = 403, message = "This data is forbidden"),
             @ApiResponse(code = 404, message = "This resource is not found")})
-    @GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/accounts/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Account> all() {
         return accountService.all();
     }
 
     @ApiOperation("Get a account' data by id")
-    @GetMapping(value = "/account/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Account> findById(@ApiParam("Account's id of the account would be retrieved") @Valid @PathVariable("id") int id) throws ResourceNotFoundException {
         Account acc = accountService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
         return ResponseEntity.ok().body(acc);
     }
 
+
+    @ApiOperation("Insert a account ")
     @PostMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Boolean> insert(@ApiParam(value = "Account's data would like to insert ", required = true)
                                        @RequestBody Account account) {
@@ -63,8 +65,8 @@ public class AccountController {
 
     }
 
-
-    @PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation("Update an acocunt")
+    @PutMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Account> update(@ApiParam(value = "Account's id of the account would be edit", required = true)
                                           @PathVariable("id") int id, @ApiParam(value = "Account's data of the account would be edit", required = true) @Valid @RequestBody Account account) throws ResourceNotFoundException {
         Account acc = accountService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
@@ -77,13 +79,13 @@ public class AccountController {
     }
 
 
-    @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation("Delete an acocunt")
+    @DeleteMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Boolean> delete(@ApiParam(value = "Account's id of the account would be delete", required = true) @PathVariable("id") int id)
             throws ResourceNotFoundException {
         Account acc = accountService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
         accountService.deleteById(id);
-
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;

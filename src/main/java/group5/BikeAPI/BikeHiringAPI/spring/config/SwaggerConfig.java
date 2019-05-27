@@ -21,7 +21,8 @@ public class SwaggerConfig {
                 .build();
     }
 
-    public ApiInfo apiEndPointsInfo(){
+    @Bean
+    public ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Spring boot Rest API").description("Bike hiring management REST API").license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")
