@@ -2,12 +2,15 @@ package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name="Slot")
 public class Slot {
+    @Id
+    int id;
     @Column(name = "from", length = 255)
     Date from;
     @Column(name = "to", length = 255)

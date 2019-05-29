@@ -7,13 +7,21 @@ import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+@Entity
+@Table(name="Order")
+public class OrderDTO {
+    @Id
     int orderId;
+    @Column(name = "cusId", length = 255)
     int cusId;
+    @Column(name = "bikeId", length = 255)
     int bikeId;
+    @Column(name = "date", length = 255)
     Date date;
+    @Column(name = "deliveryLocation", length = 255)
     String deliveryLocation;
-    List<Slot> slotList;
+    @Column(name = "slotList", length = 255)
+    String slotList;
 
     public int getOrderId() {
         return orderId;
@@ -55,11 +63,11 @@ public class Order {
         this.deliveryLocation = deliveryLocation;
     }
 
-    public List getSlotList() {
+    public String getSlotList() {
         return slotList;
     }
 
-    public void setSlotList(List slotList) {
+    public void setSlotList(String slotList) {
         this.slotList = slotList;
     }
 }
