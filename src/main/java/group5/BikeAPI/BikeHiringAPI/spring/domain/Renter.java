@@ -6,21 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Host")
-public class Host {
+@Table(name="Renter")
+public class Renter {
     @Id
-    int hostId;
+    int renterId;
     @Column(name = "phone", length = 255)
     String phone;
-    @Column(name = "hostName", length = 255)
-    String hostName;
+    @Column(name = "renterName", length = 255)
+    String renterName;
 
-    public int getHostId() {
-        return hostId;
+    public int getRenterId() {
+        return renterId;
     }
 
-    public void setHostId(int hostId) {
-        this.hostId = hostId;
+    public void setRenterId(int renterId) {
+        this.renterId = renterId;
     }
 
     public String getPhone() {
@@ -31,11 +31,11 @@ public class Host {
         this.phone = phone;
     }
 
-    public String getHostName() {
-        return hostName;
+    public String getRenterName() {
+        return renterName;
     }
 
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
+    public void setRenterName(String renterName) {
+        this.renterName = renterName;
     }
 }
