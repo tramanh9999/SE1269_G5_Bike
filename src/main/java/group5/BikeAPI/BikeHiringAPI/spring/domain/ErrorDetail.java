@@ -18,7 +18,7 @@ public class ErrorDetail {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(Date timeStamp)     {
         this.timeStamp = timeStamp;
     }
 
