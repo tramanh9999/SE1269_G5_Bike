@@ -7,20 +7,12 @@ import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name="Order")
 public class Order {
-    @Id
     int orderId;
-    @Column(name = "cusId", length = 255)
     int cusId;
-    @Column(name = "bikeId", length = 255)
     int bikeId;
-    @Column(name = "date", length = 255)
     Date date;
-    @Column(name = "deliveryLocation", length = 255)
     String deliveryLocation;
-    @Column(name = "slotList", length = 255)
     List slotList;
 
     public int getOrderId() {
