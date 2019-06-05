@@ -1,5 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Area")
+
+@ApiModel("Area")
 public class Area {
     @Id
     int areaId;
