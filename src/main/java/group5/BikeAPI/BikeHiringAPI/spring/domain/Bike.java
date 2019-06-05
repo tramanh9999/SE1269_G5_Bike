@@ -1,31 +1,16 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import java.util.List;
 
-@Entity
-@Table(name="Bike")
 public class Bike {
-    @Id
     int bikeId;
-    @Column(name = "name", length = 255)
     String name;
-    @Column(name = "brand", length = 255)
     String brand;
-    @Column(name = "noPlate", length = 255)
     String noPlate;
-    @Column(name = "capacity", length = 255)
     String capacity;
-    @Column(name = "ownerId", length = 255)
     String ownerId;
-    @Column(name = "cityId", length = 255)
     String cityId;
-    @Column(name = "slotList", length = 255)
-    List slotList;
+    List<Slot> slotList;
 
     public int getBikeId() {
         return bikeId;
@@ -87,7 +72,7 @@ public class Bike {
         return slotList;
     }
 
-    public void setSlotList(List slotList) {
+    public void setSlotList(List<Slot> slotList) {
         this.slotList = slotList;
     }
 }
