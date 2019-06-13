@@ -1,14 +1,11 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import java.util.List;
+import org.springframework.data.redis.core.RedisHash;
 
-public class Bike {
-    @Id
+import java.io.Serializable;
+import java.util.List;
+@RedisHash("TABLE_BIKE")
+public class Bike implements Serializable {
     int bikeId;
     String name;
     String brand;
@@ -78,7 +75,7 @@ public class Bike {
         return slotList;
     }
 
-    public void setSlotList(List slotList) {
+    public void setSlotList(List<Slot> slotList) {
         this.slotList = slotList;
     }
 }

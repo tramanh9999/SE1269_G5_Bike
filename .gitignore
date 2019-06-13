@@ -11,6 +11,15 @@ HELP.md
 .springBeans
 .sts4-cache
 
+
+###ignore pom.xml###
+###application properties###
+/pom.xml
+/src/main/resourses/application.properties
+
+
+
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- develope
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -24,7 +24,7 @@ steps:
     goals: 'clean package'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/target'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 

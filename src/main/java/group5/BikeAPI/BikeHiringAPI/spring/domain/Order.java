@@ -1,9 +1,5 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +55,7 @@ public class Order {
         return slotList;
     }
 
-    public void setSlotList(List slotList) {
+    public void setSlotList(List<Slot> slotList) {
         this.slotList = slotList;
     }
 }

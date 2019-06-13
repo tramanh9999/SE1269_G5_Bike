@@ -22,9 +22,6 @@ public class Account {
     @Column(name = "phone", length = 255)
     @ApiModelProperty(notes = "Account phone string")
     String phone;
-
-
-
     @Column(name = "balance", length = 255)
     @ApiModelProperty(notes = "Account balance string")
     String balance;
