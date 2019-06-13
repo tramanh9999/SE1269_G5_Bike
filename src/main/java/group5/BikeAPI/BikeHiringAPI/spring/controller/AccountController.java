@@ -19,8 +19,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1")
-@Api(value = "Account management", description = "Operation account in BikeHiringApplication")
+@Api(value = "Account management", description = "Operating account in BikeHiringApplication")
 public class AccountController {
 
     @Autowired
@@ -54,8 +53,6 @@ public class AccountController {
         Account acc;
         Map<String, Boolean> map = new HashMap<>();
         if (!op.isPresent()) {
-
-
             accountService.insert(account);
             map.put("inserted", Boolean.TRUE);
             return map;

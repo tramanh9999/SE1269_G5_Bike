@@ -1,8 +1,11 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import java.util.List;
+import org.springframework.data.redis.core.RedisHash;
 
-public class Bike {
+import java.io.Serializable;
+import java.util.List;
+@RedisHash("TABLE_BIKE")
+public class Bike implements Serializable {
     int bikeId;
     String name;
     String brand;
