@@ -46,7 +46,7 @@ public class BikeController {
         Optional<Bike> op = BikeService.findById(Bike.getBikeId());
         Bike acc;
         Map<String, Boolean> map = new HashMap<>();
-        if (!op.isPresent()) {
+        if (op==null) {
             BikeService.insert(Bike);
             map.put("inserted", Boolean.TRUE);
             return map;
@@ -61,7 +61,7 @@ public class BikeController {
     public ResponseEntity<Bike> update(@ApiParam(value = "Bike's id of the Bike would be edit", required = true) @PathVariable("id") int id, @ApiParam(value = "Bike's data of the Bike would be edit", required = true) @Valid @RequestBody Bike Bike) throws ResourceNotFoundException {
         Bike acc = BikeService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Bike not found for this " +
                 "id :: " + id));
-       
+       BikeService.updateById(id, Bike);
         return ResponseEntity.ok().body(acc);
     }
 

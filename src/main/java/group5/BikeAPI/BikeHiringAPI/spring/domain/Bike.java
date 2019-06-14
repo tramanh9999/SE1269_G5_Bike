@@ -1,19 +1,44 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import org.springframework.data.redis.core.RedisHash;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-@RedisHash("TABLE_BIKE")
+
+@Entity
+@Table(name = "Bike")
 public class Bike implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int bikeId;
+
+
+    @Column(name = "name")
     String name;
+
+    @Column(name = "brand", length = 255)
     String brand;
+
+    @Column(name = "noPlate")
     String noPlate;
+
+    @Column(name = "capacity")
     String capacity;
+
+    @Column(name = "ownerId")
     String ownerId;
+
+    @Column(name = "cityId")
     String cityId;
-    List<Slot> slotList;
+
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "BikeSlot", joinColumns = @JoinColumn(name = "bikeId"))
+    List<BikeSlot> slotList;
 
     public int getBikeId() {
         return bikeId;
@@ -75,7 +100,22 @@ public class Bike implements Serializable {
         return slotList;
     }
 
-    public void setSlotList(List<Slot> slotList) {
+    public void setSlotList(List<BikeSlot> slotList) {
         this.slotList = slotList;
+    }
+
+    public static void main(String[] args) {
+        ObjectMapper jsObject = new ObjectMapper();
+
+        Bike bk = new Bike();
+        bk.bikeId = 1;
+        bk.slotList = new ArrayList<>();
+        bk.slotList.add(new BikeSlot(new Date(2018, 11, 20), new Date(2019, 11, 12)));
+        bk.slotList.add(new BikeSlot(new Date(2019, 7, 20), new Date(2019, 10, 12)));
+        try {
+            System.out.println(jsObject.writeValueAsString(bk));
+        } catch (Exception e) {
+
+        }
     }
 }
