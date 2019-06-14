@@ -16,11 +16,6 @@ public class BikeServiceImpl implements BikeService {
     BikeRepository bikeRepository;
 
 
-
-
-
-
-
     @Override
     public List<Bike> all() {
 
