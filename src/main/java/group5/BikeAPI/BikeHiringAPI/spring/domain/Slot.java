@@ -18,6 +18,14 @@ public class Slot {
     @Column(name = "to", length = 255)
     Date to;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getFrom() {
         return from;
     }

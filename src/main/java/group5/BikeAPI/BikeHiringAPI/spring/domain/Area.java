@@ -16,7 +16,6 @@ public class Area {
     int areaId;
     @Column(name = "name", length = 255)
     String name;
-
     public int getAreaId() {
         return areaId;
     }
