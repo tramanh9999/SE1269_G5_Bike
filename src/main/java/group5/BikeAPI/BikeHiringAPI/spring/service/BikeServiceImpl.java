@@ -18,7 +18,9 @@ public class BikeServiceImpl implements BikeService {
 
     @Override
     public List<Bike> all() {
+
         return bikeRepository.findAll();
+
 
     }
 

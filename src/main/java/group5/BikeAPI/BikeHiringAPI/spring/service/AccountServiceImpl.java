@@ -38,9 +38,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void updateById(int id, Account a) {
 
-        if (id == a.getId()) {
-            accountRepo.save(a);
-        }
+        a.setId(id);
+        accountRepo.save(a);
 
     }
 
