@@ -1,15 +1,19 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.List;
-
 public class Order {
     int orderId;
     int cusId;
     int bikeId;
     Date date;
     String deliveryLocation;
-    List<Slot> slotList;
+
+    List<BikeSlot> slotList;
 
     public int getOrderId() {
         return orderId;
@@ -55,7 +59,7 @@ public class Order {
         return slotList;
     }
 
-    public void setSlotList(List<Slot> slotList) {
+    public void setSlotList(List<BikeSlot> slotList) {
         this.slotList = slotList;
     }
 }
