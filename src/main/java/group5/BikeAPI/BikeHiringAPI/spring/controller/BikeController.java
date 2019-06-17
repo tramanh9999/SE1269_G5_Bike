@@ -56,7 +56,7 @@ public class BikeController {
 
     }
 
-    @ApiOperation("Update an acocunt")
+    @ApiOperation("Update an bike")
     @PutMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bike> update(@ApiParam(value = "Bike's id of the Bike would be edit", required = true) @PathVariable("id") int id, @ApiParam(value = "Bike's data of the Bike would be edit", required = true) @Valid @RequestBody Bike Bike) throws ResourceNotFoundException {
         Bike acc = BikeService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Bike not found for this " +
