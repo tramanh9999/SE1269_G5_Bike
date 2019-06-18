@@ -46,7 +46,7 @@ public class BikeController {
         Optional<Bike> op = BikeService.findById(Bike.getBikeId());
         Bike acc;
         Map<String, Boolean> map = new HashMap<>();
-        if (op==null) {
+        if (!op.isPresent()) {
             BikeService.insert(Bike);
             map.put("inserted", Boolean.TRUE);
             return map;

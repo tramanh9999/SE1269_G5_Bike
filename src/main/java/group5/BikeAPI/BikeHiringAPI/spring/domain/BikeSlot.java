@@ -4,11 +4,13 @@ import org.jetbrains.annotations.Contract;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name="bike_slot")
+
 @Embeddable
-public class BikeSlot {
+public class BikeSlot implements Serializable {
 
 
     public Date getSlot_from() {
@@ -29,9 +31,6 @@ public class BikeSlot {
     public BikeSlot() {
     }
 
-    public BikeSlot(Date from) {
-        this.slot_from = from;
-    }
 
     public BikeSlot(Date from, Date to) {
         this.slot_from = from;

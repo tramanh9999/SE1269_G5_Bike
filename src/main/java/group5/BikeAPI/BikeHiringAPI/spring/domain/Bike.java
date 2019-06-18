@@ -104,18 +104,5 @@ public class Bike implements Serializable {
         this.slotList = slotList;
     }
 
-    public static void main(String[] args) {
-        ObjectMapper jsObject = new ObjectMapper();
 
-        Bike bk = new Bike();
-        bk.bikeId = 1;
-        bk.slotList = new ArrayList<>();
-        bk.slotList.add(new BikeSlot(new Date(2018, 11, 20), new Date(2019, 11, 12)));
-        bk.slotList.add(new BikeSlot(new Date(2019, 7, 20), new Date(2019, 10, 12)));
-        try {
-            System.out.println(jsObject.writeValueAsString(bk));
-        } catch (Exception e) {
-
-        }
-    }
 }
