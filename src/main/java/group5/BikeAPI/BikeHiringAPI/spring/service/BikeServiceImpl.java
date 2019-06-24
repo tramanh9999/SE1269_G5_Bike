@@ -40,9 +40,9 @@ public class BikeServiceImpl implements BikeService {
     @PostConstruct
     void initializeHashOperation() {
         hashOperations = redisTemplate.opsForSet();
-        for (Bike x : bikeRepository.findAll()) {
-            hashOperations.add("bikes", gson.toJson(x));
-        }
+//        for (Bike x : bikeRepository.findAll()) {
+//            hashOperations.add("bikes", gson.toJson(x));
+//        }
 //        redisTemplate.expire("bikes", 10, TimeUnit.MINUTES);
     }
 
