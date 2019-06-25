@@ -14,7 +14,7 @@ HELP.md
 
 ###ignore pom.xml###
 ###application properties###
-/src/main/resourses/application.properties
+###/src/main/resourses/application.properties###
 
 
 
