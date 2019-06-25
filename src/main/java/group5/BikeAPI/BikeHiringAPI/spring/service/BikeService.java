@@ -19,4 +19,5 @@ public interface BikeService {
     Optional<Bike> findById(int id);
 
 
+    List<Bike> getAmount(int amount);
 }

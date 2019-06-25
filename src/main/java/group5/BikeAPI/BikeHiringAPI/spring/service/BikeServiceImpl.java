@@ -46,6 +46,20 @@ public class BikeServiceImpl implements BikeService {
 //        redisTemplate.expire("bikes", 10, TimeUnit.MINUTES);
     }
 
+@Override
+public List<Bike> getAmount(int amount){
+    Set<Object> bikes = hashOperations.members("bikes");
+
+    Iterator<Object> iterator = bikes.iterator();
+    List<Bike> bk = new ArrayList<>();
+    while (iterator.hasNext()) {
+        if(bikes.size()==10){
+            return bk;
+        }
+        bk.add(gson.fromJson(iterator.next().toString(), Bike.class));
+    }
+    return bk;
+}
     @Override
     public List<Bike> all() {
         Set<Object> bikes = hashOperations.members("bikes");

@@ -29,6 +29,14 @@ public class BikeController {
     public List<Bike> all() {
         return BikeService.all();
     }
+    @ApiOperation(value = "Retrieve amount of bikes first")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Amount of bikes retrieved successfully"), @ApiResponse(code =
+            401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
+    @GetMapping(value = "/bikes/all/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Bike> getAmount(@PathVariable("amount") int amount) {
+
+        return BikeService.getAmount(amount);
+    }
 
     @ApiOperation("Get a Bike' data by id")
     @GetMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
