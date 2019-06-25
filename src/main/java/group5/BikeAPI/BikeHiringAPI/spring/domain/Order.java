@@ -12,7 +12,6 @@ public class Order {
     int bikeId;
     Date date;
     String deliveryLocation;
-
     List<BikeSlot> slotList;
 
     public int getOrderId() {
