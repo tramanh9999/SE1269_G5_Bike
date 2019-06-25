@@ -29,6 +29,14 @@ public class BikeController {
     public List<Bike> all() {
         return BikeService.all();
     }
+    @ApiOperation(value = "Retrieve amount of bikes first")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Amount of bikes retrieved successfully"), @ApiResponse(code =
+            401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
+    @GetMapping(value = "/bikes/all/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Bike> getAmount(@PathVariable("amount") int amount) {
+
+        return BikeService.getAmount(amount);
+    }
 
     @ApiOperation("Get a Bike' data by id")
     @GetMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,7 +54,7 @@ public class BikeController {
         Optional<Bike> op = BikeService.findById(Bike.getBikeId());
         Bike acc;
         Map<String, Boolean> map = new HashMap<>();
-        if (op==null) {
+        if (!op.isPresent()) {
             BikeService.insert(Bike);
             map.put("inserted", Boolean.TRUE);
             return map;
@@ -56,7 +64,7 @@ public class BikeController {
 
     }
 
-    @ApiOperation("Update an acocunt")
+    @ApiOperation("Update an bike")
     @PutMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bike> update(@ApiParam(value = "Bike's id of the Bike would be edit", required = true) @PathVariable("id") int id, @ApiParam(value = "Bike's data of the Bike would be edit", required = true) @Valid @RequestBody Bike Bike) throws ResourceNotFoundException {
         Bike acc = BikeService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Bike not found for this " +
