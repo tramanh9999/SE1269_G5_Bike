@@ -8,6 +8,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -20,6 +21,12 @@ import java.util.Optional;
 public class HostController {
     @Autowired
     HostService hostService;
+
+
+    @GetMapping(value = "/host/gallery")
+    public ModelAndView hostgala(){
+        return new ModelAndView("forward:/view/hostGalery.html");
+    }
 
     @ApiOperation(value = "Retrieve all host")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "All host retrieved successfully"), @ApiResponse(code =
