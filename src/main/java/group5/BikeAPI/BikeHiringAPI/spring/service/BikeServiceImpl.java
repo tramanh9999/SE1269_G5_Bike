@@ -10,18 +10,11 @@ import java.util.Optional;
 
 @Service
 public class BikeServiceImpl implements BikeService {
-
-
     @Autowired
     BikeRepository bikeRepository;
-
-
     @Override
     public List<Bike> all() {
-
         return bikeRepository.findAll();
-
-
     }
 
     @Override
@@ -42,8 +35,6 @@ public class BikeServiceImpl implements BikeService {
             return true;
         }
         return false;
-
-
     }
 
     @Override

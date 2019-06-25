@@ -29,6 +29,8 @@ public class BikeSlot {
     public BikeSlot() {
     }
 
+
+
     public BikeSlot(Date from) {
         this.slot_from = from;
     }

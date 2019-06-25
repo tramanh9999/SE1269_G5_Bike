@@ -1,6 +1,5 @@
 package group5.BikeAPI.BikeHiringAPI.spring.service;
 
-import group5.BikeAPI.BikeHiringAPI.spring.domain.Account;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Bike;
 
 import java.util.List;

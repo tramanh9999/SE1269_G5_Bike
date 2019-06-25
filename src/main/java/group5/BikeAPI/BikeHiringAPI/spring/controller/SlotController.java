@@ -1,7 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.controller;
 
-import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
-import group5.BikeAPI.BikeHiringAPI.spring.service.SlotService;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.BikeSlot;
+import group5.BikeAPI.BikeHiringAPI.spring.service.BikeSlotService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -19,46 +19,46 @@ import java.util.Optional;
 @Api(value = "Slot management", description = "Operatiing slot in BikeHiringApplication")
 public class SlotController {
     @Autowired
-    SlotService slotService;
+    BikeSlotService bikeSlotService;
 
     @ApiOperation(value = "Retrieve all slot")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "All slot retrieved successfully"), @ApiResponse(code =
             401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
     @GetMapping(value = "/slot/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Slot> all() {
-        return slotService.all();
+    public List<BikeSlot> all() {
+        return bikeSlotService.all();
     }
 
     @ApiOperation("Get a Slot' data by id")
     @GetMapping(value = "/slot/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Slot> findById(@ApiParam("Slot's id of the Slot would be retrieved") @Valid @PathVariable("id") int id) throws ResourceNotFoundException {
-        Slot slot = slotService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Slot not found for " +
+    public ResponseEntity<BikeSlot> findById(@ApiParam("Slot's id of the Slot would be retrieved") @Valid @PathVariable("id") int id) throws ResourceNotFoundException {
+        BikeSlot slot = bikeSlotService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Slot not found for " +
                 "this id " +
                 ":: " + id));
         return ResponseEntity.ok().body(slot);
     }
 
 
-    @ApiOperation("Insert a Slot ")
+    /*@ApiOperation("Insert a Slot ")
     @PostMapping(value = "/slot", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, Boolean> insert(@ApiParam(value = "Slot's data would like to insert ", required = true) @RequestBody Slot slot) {
-        Optional<Slot> op = slotService.findById(slot.getId());
-        Slot acc;
+    public Map<String, Boolean> insert(@ApiParam(value = "Slot's data would like to insert ", required = true) @RequestBody BikeSlot slot) {
+        *//*Optional<BikeSlot> op = bikeSlotService.findById(slot.get);*//*
+        *//*Slot slot1;*//*
         Map<String, Boolean> map = new HashMap<>();
         if (!op.isPresent()) {
-            slotService.insert(slot);
+            bikeSlotService.insert(slot);
             map.put("inserted", Boolean.TRUE);
             return map;
         }
         map.put("inserted", Boolean.FALSE);
         return map;
 
-    }
+    }*/
 
     @ApiOperation("Update slot")
     @PutMapping(value = "/slot/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Slot> update(@ApiParam(value = "Slot's id of the Slot would be edit", required = true) @PathVariable("id") int id, @ApiParam(value = "Slot's data of the Slot would be edit", required = true) @Valid @RequestBody Slot slot) throws ResourceNotFoundException {
-        Slot acc = slotService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Slot not found for this " +
+    public ResponseEntity<BikeSlot> update(@ApiParam(value = "Slot's id of the Slot would be edit", required = true) @PathVariable("id") int id, @ApiParam(value = "Slot's data of the Slot would be edit", required = true) @Valid @RequestBody BikeSlot slot) throws ResourceNotFoundException {
+        BikeSlot acc = bikeSlotService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Slot not found for this " +
                 "id :: " + id));
 
         return ResponseEntity.ok().body(acc);
@@ -67,8 +67,8 @@ public class SlotController {
 
     @DeleteMapping(value = "/slot/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Boolean> delete(@ApiParam(value = "Slot's id of the Slot would be delete", required = true) @PathVariable("id") int id) throws ResourceNotFoundException {
-        Slot acc = slotService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Slot not found for this id :: " + id));
-        slotService.deleteById(id);
+        BikeSlot acc = bikeSlotService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Slot not found for this id :: " + id));
+        bikeSlotService.deleteById(id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
