@@ -10,9 +10,9 @@
     </parent>
     <groupId>group5.BikeAPI</groupId>
     <artifactId>BikeHiringAPI</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>devV1</version>
     <name>BikeHiringAPI</name>
-    <description>Demo project for Spring Boot</description>
+    <description>API for Hirebike application</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -95,13 +95,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-jpa</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jpa</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -111,7 +114,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>17.0.0</version>
             <scope>compile</scope>
         </dependency>
 
