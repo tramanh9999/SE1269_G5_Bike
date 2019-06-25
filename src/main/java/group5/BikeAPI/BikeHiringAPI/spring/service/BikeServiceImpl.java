@@ -63,7 +63,6 @@ public List<Bike> getAmount(int amount){
     @Override
     public List<Bike> all() {
         Set<Object> bikes = hashOperations.members("bikes");
-
         Iterator<Object> iterator = bikes.iterator();
         List<Bike> bk = new ArrayList<>();
         while (iterator.hasNext()) {
@@ -76,7 +75,7 @@ public List<Bike> getAmount(int amount){
     public void insert(Bike a) {
         try {
             Gson gson = new Gson();
-            hashOperations.add(a.getBikeId() + "", gson.toJson(a));
+            hashOperations.add("bikes", gson.toJson(a));
         } catch (Exception e) {
             System.out.println("Error");
             e.printStackTrace();
