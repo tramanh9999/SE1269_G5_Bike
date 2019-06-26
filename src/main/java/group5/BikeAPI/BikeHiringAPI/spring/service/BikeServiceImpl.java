@@ -80,7 +80,7 @@ public List<Bike> getAmount(int amount){
             System.out.println("Error");
             e.printStackTrace();
         }
-        bikeRepository.save(a);
+//        bikeRepository.save(a);
     }
 
     @Override
