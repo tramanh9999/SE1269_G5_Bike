@@ -17,11 +17,12 @@ import java.util.Optional;
 
 @RestController
 @Api(value = "Bike management", description = "Operatiing bike in BikeHiringApplication")
+@CrossOrigin(origins = "http://localhost:63342",allowCredentials = "true")
+
 public class BikeController {
 
     @Autowired
     BikeService BikeService;
-
     @ApiOperation(value = "Retrieve all bikes")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "All bike retrieved successfully"), @ApiResponse(code =
             401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
