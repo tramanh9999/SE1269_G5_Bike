@@ -32,10 +32,7 @@ public class BikeServiceImpl implements BikeService {
     @Autowired
     Gson gson;
 
-    public static void main(String[] args) {
-        BikeServiceImpl bikeService = new BikeServiceImpl();
-        bikeService.all();
-    }
+
 
     @PostConstruct
     void initializeHashOperation() {

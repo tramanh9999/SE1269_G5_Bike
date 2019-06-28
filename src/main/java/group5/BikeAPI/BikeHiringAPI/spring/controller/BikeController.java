@@ -28,6 +28,8 @@ public class BikeController {
             401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
     @GetMapping(value = "/bikes/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Bike> all() {
+
+
         return BikeService.all();
     }
 

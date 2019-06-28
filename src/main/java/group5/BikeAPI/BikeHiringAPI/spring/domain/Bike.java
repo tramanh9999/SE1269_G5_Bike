@@ -35,34 +35,34 @@ public class Bike implements Serializable {
     String cityId;
 
 
-    @Column(name = "location")
-    String location;
-
-
-    @Column(name = "updateDate")
-    Date updateDate;
+//    @Column(name = "location")
+//    String location;
+//
+//
+//    @Column(name = "updateDate")
+//    Date updateDate;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "BikeSlot", joinColumns = @JoinColumn(name = "bikeId"))
     List<BikeSlot> slotList;
 
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
+//
+//    public String getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(String location) {
+//        this.location = location;
+//    }
+//
+//
+//    public Date getUpdateDate() {
+//        return updateDate;
+//    }
+//
+//    public void setUpdateDate(Date updateDate) {
+//        this.updateDate = updateDate;
+//    }
 
 
 
