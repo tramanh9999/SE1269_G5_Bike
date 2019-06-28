@@ -1,1 +1,1 @@
-<?php include_once("HostGalery.html"); ?>
+<?php include_once("index.html"); ?>
