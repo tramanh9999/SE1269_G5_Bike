@@ -79,8 +79,8 @@ public List<Bike> getAmount(int amount){
         } catch (Exception e) {
             System.out.println("Error");
             e.printStackTrace();
-        }
-      bikeRepository.save(a);
+            }
+          bikeRepository.save(a);
     }
 
     @Override
