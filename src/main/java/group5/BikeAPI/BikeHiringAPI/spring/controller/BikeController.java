@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @RestController
 @Api(value = "Bike management", description = "Operatiing bike in BikeHiringApplication")
-@CrossOrigin( origins = "http://fe-bk.surge.sh",allowCredentials = "true")
 @RequestMapping
 public class BikeController {
 
@@ -53,7 +52,7 @@ public class BikeController {
         return ResponseEntity.ok().body(acc);
     }
 
-
+    @CrossOrigin( origins = "http://fe-bk.surge.sh",allowCredentials = "true")
     @ApiOperation("Insert a Bike ")
     @PostMapping(value = "/bikes", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Boolean> insert(@ApiParam(value = "Bike's data would like to insert ", required = true) @RequestBody Bike Bike) {
