@@ -35,6 +35,27 @@ public class Bike implements Serializable {
     @Column(name = "cityId")
     String cityId;
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @Column(name = "location")
+    String location;
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Column(name = "updateDate")
+    Date updateDate;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "BikeSlot", joinColumns = @JoinColumn(name = "bikeId"))
