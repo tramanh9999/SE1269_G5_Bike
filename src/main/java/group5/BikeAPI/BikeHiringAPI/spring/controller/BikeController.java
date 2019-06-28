@@ -21,7 +21,8 @@ public class BikeController {
 
     @Autowired
     BikeService BikeService;
-@CrossOrigin(origins = "http://localhost:63342",allowCredentials = "true")
+
+    @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
     @ApiOperation(value = "Retrieve all bikes")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "All bike retrieved successfully"), @ApiResponse(code =
             401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
@@ -29,6 +30,7 @@ public class BikeController {
     public List<Bike> all() {
         return BikeService.all();
     }
+
     @ApiOperation(value = "Retrieve amount of bikes first")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Amount of bikes retrieved successfully"), @ApiResponse(code =
             401, message = "Not authorized to access this data"), @ApiResponse(code = 403, message = "This data is forbidden"), @ApiResponse(code = 404, message = "This resource is not found")})
@@ -69,7 +71,7 @@ public class BikeController {
     public ResponseEntity<Bike> update(@ApiParam(value = "Bike's id of the Bike would be edit", required = true) @PathVariable("id") int id, @ApiParam(value = "Bike's data of the Bike would be edit", required = true) @Valid @RequestBody Bike Bike) throws ResourceNotFoundException {
         Bike acc = BikeService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Bike not found for this " +
                 "id :: " + id));
-       BikeService.updateById(id, Bike);
+        BikeService.updateById(id, Bike);
         return ResponseEntity.ok().body(acc);
     }
 
