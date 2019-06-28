@@ -17,6 +17,8 @@ import java.util.Optional;
 
 @RestController
 @Api(value = "Bike management", description = "Operatiing bike in BikeHiringApplication")
+@CrossOrigin( origins = "http://fe-bk.surge.sh",allowCredentials = "true")
+@RequestMapping
 public class BikeController {
 
     @Autowired
