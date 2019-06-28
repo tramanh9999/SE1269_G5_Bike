@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   $('#loadmaster').bind("click", function () {
-    api_master="http://hirebike.herokuapp.com/bikehire/bikes/all";
+    api_master="https://hirebike.herokuapp.com/bikehire/bikes/all";
     $.ajax({
       xhrFields: {
         withCredentials: true
@@ -18,7 +18,7 @@ $(document).ready(function () {
         withCredentials: true
       },
       type: "GET",
-      url: "http://dev-hirebike.herokuapp.com/bikehire/bikes/all"
+      url: "https://dev-hirebike.herokuapp.com/bikehire/bikes/all"
     }).done(function (data) {
       populateTable(data);
     });
