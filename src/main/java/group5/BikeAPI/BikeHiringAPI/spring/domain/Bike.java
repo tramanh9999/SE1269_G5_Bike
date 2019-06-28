@@ -16,7 +16,6 @@ public class Bike implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int bikeId;
 
-
     @Column(name = "name")
     String name;
 
@@ -35,6 +34,19 @@ public class Bike implements Serializable {
     @Column(name = "cityId")
     String cityId;
 
+
+    @Column(name = "location")
+    String location;
+
+
+    @Column(name = "updateDate")
+    Date updateDate;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "BikeSlot", joinColumns = @JoinColumn(name = "bikeId"))
+    List<BikeSlot> slotList;
+
+
     public String getLocation() {
         return location;
     }
@@ -43,8 +55,6 @@ public class Bike implements Serializable {
         this.location = location;
     }
 
-    @Column(name = "location")
-    String location;
 
     public Date getUpdateDate() {
         return updateDate;
@@ -54,12 +64,7 @@ public class Bike implements Serializable {
         this.updateDate = updateDate;
     }
 
-    @Column(name = "updateDate")
-    Date updateDate;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "BikeSlot", joinColumns = @JoinColumn(name = "bikeId"))
-    List<BikeSlot> slotList;
 
     public int getBikeId() {
         return bikeId;
