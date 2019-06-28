@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   $('#loadmaster').bind("click", function () {
-    api_master="https://www.hackthebox.eu/api/invite/generate";
+    api_master="http://hirebike.herokuapp.com/bikehire/bikes/all";
     $.ajax({
       xhrFields: {
         withCredentials: true
