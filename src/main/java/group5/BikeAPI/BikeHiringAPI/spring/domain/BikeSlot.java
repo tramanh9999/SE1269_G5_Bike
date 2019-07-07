@@ -1,5 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.Contract;
 
 import javax.persistence.*;
@@ -8,8 +10,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name="bike_slot")
-
 @Embeddable
+@Getter
+@Setter
 public class BikeSlot implements Serializable {
 
 
@@ -37,11 +40,4 @@ public class BikeSlot implements Serializable {
         this.slot_to = to;
     }
 
-    public Date getSlot_to() {
-        return slot_to;
-    }
-
-    public void setSlot_to(Date slot_to) {
-        this.slot_to = slot_to;
-    }
 }

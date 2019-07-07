@@ -102,6 +102,5 @@ public List<Bike> getAmount(int amount){
     public Optional<Bike> findById(int id) {
         Optional<Bike> op = bikeRepository.findById(id);
         return op;
-
     }
 }

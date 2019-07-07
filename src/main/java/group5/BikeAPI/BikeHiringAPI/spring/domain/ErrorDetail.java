@@ -1,7 +1,11 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Date;
+@Getter
+@Setter
 public class ErrorDetail {
     private Date timeStamp;
     private  String message;
@@ -14,27 +18,5 @@ public class ErrorDetail {
         this.detail = detail;
     }
 
-    public Date getTimeStamp() {
-        return timeStamp;
-    }
 
-    public void setTimeStamp(Date timeStamp)     {
-        this.timeStamp = timeStamp;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
 }
