@@ -1,19 +1,19 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
-import java.util.List;
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
-    int orderId;
-    int cusId;
-    int bikeId;
-    Date date;
+
+
+    int orderId=0;
+    int accountId=0;
+    int bikeId=0;
+    Date orderDate;
     String deliveryLocation;
-    List<BikeSlot> slotList;
-
-
+    String slotlist;
+    Long total;
 }

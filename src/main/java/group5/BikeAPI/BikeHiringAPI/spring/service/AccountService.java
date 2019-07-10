@@ -9,11 +9,15 @@ public interface AccountService {
 
      List<Account> all();
 
-     void insert(Account a);
+     boolean insert(Account a);
 
-     void deleteById(int id);
+     boolean deleteById(int id);
 
-     void updateById(int id, Account a);
+     boolean updateById(int id, Account a);
 
      Optional<Account> findById(int id);
+
+    Optional<Account> findByEmail(String email);
+
+    int getLastIndex();
 }

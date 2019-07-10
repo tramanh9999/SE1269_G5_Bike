@@ -8,7 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import group5.BikeAPI.BikeHiringAPI.spring.service.AccountService;
-import org.springframework.web.client.ResourceAccessException;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -39,7 +38,8 @@ public class AccountController {
 
     @ApiOperation("Get a account' data by id")
     @GetMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Account> findById(@ApiParam("Account's id of the account would be retrieved") @Valid @PathVariable("id") int id) throws ResourceNotFoundException {
+    public ResponseEntity<Account> findById(@ApiParam(value = "Account's id of the account would be retrieved",
+            defaultValue = "new Integer(1)" ) @Valid @PathVariable("id") Integer id) throws ResourceNotFoundException {
         Account acc = accountService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
         return ResponseEntity.ok().body(acc);
     }
@@ -47,29 +47,43 @@ public class AccountController {
 
     @ApiOperation("Insert a account ")
     @PostMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, Boolean> insert(@ApiParam(value = "Account's data would like to insert ", required = true)
+    public ResponseEntity<Account> insert(@ApiParam(value = "Account's data would like to insert ", required = true)
                                        @RequestBody Account account) {
-        Optional<Account> op = accountService.findById(account.getId());
-        Account acc;
-        Map<String, Boolean> map = new HashMap<>();
-        if (!op.isPresent()) {
-            accountService.insert(account);
-            map.put("inserted", Boolean.TRUE);
-            return map;
-        }
-        map.put("inserted", Boolean.FALSE);
-        return map;
+        accountService.insert(account);
+
+        return ResponseEntity.ok().body(accountService.findById(accountService.getLastIndex()).get());
 
     }
+    //todo: get garage of acocunt
+
+
+
+//    @ApiOperation("Check if exist an account by its email ")
+//    @PostMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Map<String, Boolean> insert(@RequestBody String email) {
+//        Optional<Account> op = accountService.findByEmail(email);
+//        Account acc;
+//        Map<String, Boolean> map = new HashMap<>();
+//        if (!op.isPresent()) {
+//
+//            map.put("inserted", Boolean.TRUE);
+//            return map;
+//        }
+//        map.put("inserted", Boolean.FALSE);
+//        return map;
+//
+//    }
 
     @ApiOperation("Update an acocunt")
     @PutMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Account> update(@ApiParam(value = "Account's id of the account would be edit", required = true)
-                                          @PathVariable("id") int id, @ApiParam(value = "Account's data of the account would be edit", required = true) @Valid @RequestBody Account account) throws ResourceNotFoundException {
+    public ResponseEntity<Account> update(
+            @ApiParam(value = "Account's id of the account would be edit",
+           required = true)
+          @PathVariable("id") Integer id, @ApiParam(value = "Account's data of the account would be edit", required = true) @Valid @RequestBody Account account) throws ResourceNotFoundException {
         Account acc = accountService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
         acc.setBalance(account.getBalance());
         acc.setEmail(account.getEmail());
-        acc.setBalance(account.getPhone());
+        acc.setBalance(account.getBalance());
 
         accountService.updateById(id, acc);
         return ResponseEntity.ok().body(acc);
@@ -78,7 +92,10 @@ public class AccountController {
 
     @ApiOperation("Delete an acocunt")
     @DeleteMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, Boolean> delete(@ApiParam(value = "Account's id of the account would be delete", required = true) @PathVariable("id") int id)
+    public Map<String, Boolean> delete(
+      @ApiParam(value = "Account's id of the account would be delete",
+              required = true ) @PathVariable("id") Integer id)
+
             throws ResourceNotFoundException {
         Account acc = accountService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));

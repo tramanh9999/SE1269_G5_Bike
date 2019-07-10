@@ -2,34 +2,37 @@ package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Account")
 @ApiModel(description = "All information about your account")
-
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account {
-    @Id
-    @ApiModelProperty(notes = "Account Id")
-    int id;
-
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "Id")
+    int id=0;
     @Column(name = "email", length = 255)
-    @ApiModelProperty(notes = "Account email address")
+    @ApiModelProperty(notes = "email address")
     String email;
-
     @Column(name = "phone", length = 255)
-    @ApiModelProperty(notes = "Account phone string")
+    @ApiModelProperty(notes = "phone string")
     String phone;
-    @Column(name = "balance", length = 255)
-    @ApiModelProperty(notes = "Account balance string")
-    String balance;
+    @Column(name = "balance")
+    @ApiModelProperty(notes = "balance")
+    long balance=0L;
+    @Column(name = "avatar")
+    String avatar;
+
+
+
+
 
 
 

@@ -15,6 +15,13 @@ public class AccountServiceImpl implements AccountService {
     AccountRepository accountRepo;
 
 
+
+
+    @Override
+    public Optional<Account> findByEmail(String email) {
+        return Optional.empty();
+    }
+
     public List<Account> all() {
 
         Iterable<Account> acclist = accountRepo.findAll();
@@ -22,24 +29,32 @@ public class AccountServiceImpl implements AccountService {
         return xyz;
     }
 
+
     @Override
-    public void insert(Account a) {
+    public int getLastIndex() {
+        return accountRepo.getLastIndex();
+    }
+
+    @Override
+    public boolean insert(Account a) {
         accountRepo.save(a);
-
+        return true;
     }
 
 
     @Override
-    public void deleteById(int id) {
+    public boolean deleteById(int id) {
         accountRepo.deleteById(id);
+        return true;
 
     }
 
     @Override
-    public void updateById(int id, Account a) {
+    public boolean updateById(int id, Account a) {
 
         a.setId(id);
         accountRepo.save(a);
+        return true;
 
     }
 

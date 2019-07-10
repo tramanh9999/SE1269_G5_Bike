@@ -1,22 +1,16 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ErrorDetail {
-    private Date timeStamp;
     private  String message;
     private String detail;
+    private Date timeStamp;
 
-
-    public ErrorDetail(Date timeStamp, String message, String detail) {
-        this.timeStamp = timeStamp;
-        this.message = message;
-        this.detail = detail;
-    }
 
 
 }
