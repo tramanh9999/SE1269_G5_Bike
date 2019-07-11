@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BikeRepository extends JpaRepository<Bike, Integer> {
-    @Query("select  max (bikeId) from Bike ")
+    @Query("select  max (id) from Bike")
     int getLastIndex();
 
 }

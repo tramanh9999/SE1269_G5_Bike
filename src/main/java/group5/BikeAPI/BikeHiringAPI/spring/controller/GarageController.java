@@ -51,7 +51,7 @@ public class GarageController {
                     required = true)
              @RequestBody Garage Garage) {
         //set =0 to save new instance but not update old instance
-        Garage.setGid(0);
+        Garage.setId(0);
         garageService.insert(Garage);
         Optional<Garage> garageOptional = garageService.findById(garageService.getLastIndex());
 

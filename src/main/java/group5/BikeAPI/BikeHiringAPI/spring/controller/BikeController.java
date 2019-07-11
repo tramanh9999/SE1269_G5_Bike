@@ -1,24 +1,19 @@
 package group5.BikeAPI.BikeHiringAPI.spring.controller;
 
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Bike;
-import group5.BikeAPI.BikeHiringAPI.spring.domain.BikeSlot;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
 import group5.BikeAPI.BikeHiringAPI.spring.service.BikeService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Api(value = "Bike management", description = "Operating bike in BikeHiringApplication")
@@ -58,10 +53,10 @@ public class BikeController {
     public ResponseEntity<Bike> insert(@ApiParam(value = "Bike's data would like to insert", required = true)
                                            @RequestBody Bike Bike) throws HttpClientErrorException.BadRequest {
 
-        Bike.setBikeId(0);
+        Bike.setId(0);
         BikeService.insert(Bike);
 
-        URI uri= URI.create(String.valueOf(Bike.getBikeId()));
+        URI uri= URI.create(String.valueOf(Bike.getId()));
         return ResponseEntity.created(uri).body(Bike);
     }
 
@@ -86,11 +81,11 @@ public class BikeController {
     @PutMapping(value = "/bikes/{id}/slots", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bike> updateSlots(@ApiParam(value = "Id of the Bike would be updated", required = true)
                                        @PathVariable("id") Integer id, @ApiParam(value = "Slot list would be updated", required = true)
-                                       @Valid @RequestBody List<BikeSlot> bikeSlotList) throws ResourceNotFoundException {
+                                       @Valid @RequestBody List<Slot> slotList) throws ResourceNotFoundException {
         Bike acc = BikeService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Bike not found for this " +
                 "id :: " + id));
 
-        BikeService.updateSlots(id,bikeSlotList);
+        BikeService.updateSlotList(id,slotList);
         return ResponseEntity.ok().body(BikeService.findById(id).get());
     }
 

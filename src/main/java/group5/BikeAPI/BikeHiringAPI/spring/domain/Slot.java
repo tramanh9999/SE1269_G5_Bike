@@ -6,22 +6,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 @Entity
-@Table(name = "bike_slot")
+@Table(name = "slot")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BikeSlot implements Serializable {
+public class Slot implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int sid=0;
-    @Column(name = "s_from")
-    Date s_from;
-    @Column(name = "s_to")
-    Date s_to;
+    int id=0;
+    @Column(name = "slot_start")
+    Date slot_start;
+    @Column(name = "slot_end")
+    Date slot_end;
     @Column(name = "fee")
     long fee;
     @ManyToOne
-    @JoinColumn(name = "bikeId")
+    @JoinColumn(name = "bike_id", foreignKey = @ForeignKey(name = "bike_id"))
     Bike bike;
 
 

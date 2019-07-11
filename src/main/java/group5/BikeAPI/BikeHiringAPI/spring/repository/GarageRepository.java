@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GarageRepository extends JpaRepository<Garage, Integer> {
-    @Query("select max(gid) from Garage ")
+    @Query("select max(id) from Garage")
     int getLastIndex();
 }

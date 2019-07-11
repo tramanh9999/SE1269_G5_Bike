@@ -19,7 +19,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 @Configuration
-@ComponentScan("group5.BikeAPI.BikeHiringAPI.spring")
 @EnableCaching
 public class RedisConfiguration {
     @Value("${spring.redis.host}")

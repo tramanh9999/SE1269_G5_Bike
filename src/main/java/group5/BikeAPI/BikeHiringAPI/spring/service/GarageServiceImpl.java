@@ -39,7 +39,7 @@ public class GarageServiceImpl implements GarageService {
 
     @Override
     public boolean updateById(int id, Garage a) {
-        a.setGid(id);
+        a.setId(id);
         garageRepository.save(a);
         return true;
     }

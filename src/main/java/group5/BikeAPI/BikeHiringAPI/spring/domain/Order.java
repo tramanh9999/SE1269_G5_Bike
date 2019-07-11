@@ -9,11 +9,11 @@ import java.util.Date;
 public class Order {
 
 
-    int orderId=0;
-    int accountId=0;
-    int bikeId=0;
-    Date orderDate;
-    String deliveryLocation;
-    String slotlist;
-    Long total;
+    int id=0;
+    int account_id=0;
+    int bike_id=0;
+    Date order_date;
+    String delivery_location;
+    String slot_list;
+    Long total_fee;
 }

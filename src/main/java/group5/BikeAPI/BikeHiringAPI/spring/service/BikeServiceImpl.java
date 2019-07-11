@@ -3,7 +3,7 @@ package group5.BikeAPI.BikeHiringAPI.spring.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Bike;
-import group5.BikeAPI.BikeHiringAPI.spring.domain.BikeSlot;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
 import group5.BikeAPI.BikeHiringAPI.spring.repository.BikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -71,8 +71,8 @@ public class BikeServiceImpl implements BikeService {
     }
 
     @Override
-    public void updateSlots(int id,List<BikeSlot> bikeSlotList) {
-        findById(id).get().setSlotList(bikeSlotList);
+    public void updateSlotList(int id, List<Slot> slotList) {
+        findById(id).get().setSlot_list(slotList);
 
     }
 
@@ -112,7 +112,7 @@ public class BikeServiceImpl implements BikeService {
     @Override
     public boolean updateById(int id, Bike a) {
         if (bikeRepository.existsById(id)) {
-            a.setBikeId(id);
+            a.setId(id);
             bikeRepository.save(a);
             return true;
         }

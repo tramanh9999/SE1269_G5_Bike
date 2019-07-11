@@ -5,24 +5,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "Garage")
+@Table(name = "garage")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Garage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int gid=0;
+    int id = 0;
     @Column(name = "name")
     String name;
 
-    @Column(name = "createDate")
-    Date createDate;
+    @Column(name = "create_date")
+    Date create_date;
 
     @Column(name = "phone")
     String phone;
@@ -36,6 +34,10 @@ public class Garage {
     @Column(name = "display_location")
     String display_location;
     @Column(name = "balance")
-    long balance=0L;
+    long balance = 0L;
+
+    @OneToOne
+    @JoinColumn(name = "id",foreignKey = @ForeignKey(name = "account_id"))
+    Account bike;
 
 }

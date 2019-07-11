@@ -1,10 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.service;
 
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Account;
-import group5.BikeAPI.BikeHiringAPI.spring.domain.BikeSlot;
-import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
-import group5.BikeAPI.BikeHiringAPI.spring.repository.GarageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +12,12 @@ public class SlotServiceImpl implements SlotService {
 
 
     @Override
-    public List<BikeSlot> all(int bid) {
+    public List<Slot> all(int bid) {
         return null;
     }
 
     @Override
-    public boolean insert(int bid, BikeSlot bikeSlot) {
+    public boolean insert(int bid, Slot bikeSlot) {
         return false;
     }
 
@@ -30,17 +27,14 @@ public class SlotServiceImpl implements SlotService {
     }
 
     @Override
-    public boolean updateById(int bid, int bsid, BikeSlot bikeSlot) {
+    public boolean updateById(int bid, int bsid, Slot bikeSlot) {
         return false;
     }
 
     @Override
-    public Optional<Account> findById(int id) {
+    public Optional<Slot> findById(int id) {
         return Optional.empty();
     }
 
-    @Override
-    public Optional<Account> findByEmail(String email) {
-        return Optional.empty();
-    }
+
 }

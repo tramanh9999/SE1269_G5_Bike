@@ -1,9 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.service;
 
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Bike;
-import group5.BikeAPI.BikeHiringAPI.spring.domain.BikeSlot;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.jpa.repository.Query;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +19,7 @@ public interface BikeService {
 
     List<Bike> getAmount(int amount);
 
-    void updateSlots(int id,List<BikeSlot> bikeSlotList);
+    void updateSlotList(int id, List<Slot> slotList);
 
     //map with getlastinddex in repo
     int getLastIndex();

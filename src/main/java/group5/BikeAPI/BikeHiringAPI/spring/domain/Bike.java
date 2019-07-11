@@ -1,7 +1,6 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Bike")
+@Table(name = "bike")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bike implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int bikeId = 0;
+    int id = 0;
     //thong tin chinh
     @Column(name = "name")
     String name;
@@ -37,17 +36,17 @@ public class Bike implements Serializable {
 
 
     @OneToMany(mappedBy = "bike")
-    List<BikeSlot> slotList = new ArrayList<>();
+    List<Slot> slot_list = new ArrayList<>();
 
     //thong tin lien quan
     @Column(name = "description")
     String description;
-    @Column(name = "noPlate")
-    String noPlate;
+    @Column(name = "no_plate")
+    String no_plate;
     @Column(name = "capacity")
     String capacity;
-    @Column(name = "cityId")
-    String cityId;
+    @Column(name = "city_id")
+    String city_id;
 
 
 }
