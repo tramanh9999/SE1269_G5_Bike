@@ -1,6 +1,5 @@
 package group5.BikeAPI.BikeHiringAPI.spring.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Bike;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
@@ -22,8 +21,7 @@ public class BikeServiceImpl implements BikeService {
     BikeRepository bikeRepository;
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
-    @Autowired
-    ObjectMapper objectMapper;
+
     private SetOperations<String, Object> hashOperations;
 
     @Autowired
@@ -73,7 +71,6 @@ public class BikeServiceImpl implements BikeService {
     @Override
     public void updateSlotList(int id, List<Slot> slotList) {
         findById(id).get().setSlot_list(slotList);
-
     }
 
     public int getLastIndex() {

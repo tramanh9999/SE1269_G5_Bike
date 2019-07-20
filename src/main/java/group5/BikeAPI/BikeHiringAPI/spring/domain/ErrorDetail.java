@@ -10,7 +10,4 @@ public class ErrorDetail {
     private  String message;
     private String detail;
     private Date timeStamp;
-
-
-
 }

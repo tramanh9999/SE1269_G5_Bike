@@ -9,31 +9,28 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "account")
+@Table(name = "tbl_account")
 @ApiModel(description = "All information about your account")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public class Account{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "Id")
     int id = 0;
-    @Column(name = "email")
+    @Column(name = "_email")
     @ApiModelProperty(notes = "email address")
     String email;
-    @Column(name = "phone")
+    @Column(name = "_phone")
     @ApiModelProperty(notes = "phone string")
     String phone;
-    @Column(name = "balance")
+    @Column(name = "_balance")
     @ApiModelProperty(notes = "balance")
     long balance = 0L;
-    @Column(name = "avatar")
+    @Column(name = "_avatar")
     String avatar;
-
-    @OneToOne(mappedBy = "bike")
-    @ApiModelProperty(notes = "garage")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "_garage")
     Garage garage;
-
-
 }

@@ -1,6 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.service;
 
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Account;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
 import group5.BikeAPI.BikeHiringAPI.spring.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,11 @@ public class AccountServiceImpl implements AccountService {
         return true;
     }
 
+    @Override
+    public boolean insertGarage(Garage garage) {
+        return false;
+    }
+
 
     @Override
     public boolean deleteById(int id) {
@@ -60,6 +66,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Optional<Account> findById(int id) {
-    return  accountRepo.findById(id);
+        return accountRepo.findById(id);
     }
 }

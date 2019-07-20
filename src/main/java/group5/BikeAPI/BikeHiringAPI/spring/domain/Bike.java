@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "bike")
+@Table(name = "tbl_bike")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,24 +20,14 @@ public class Bike implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id = 0;
     //thong tin chinh
-    @Column(name = "name")
+    @Column(name = "_name")
     String name;
-    @Column(name = "image")
-    String image;
-    @ManyToOne
+    @OneToMany
+    List<Image> imageList;
+    @ManyToOne(fetch = FetchType.LAZY)
     Garage garage;
-    //vi tri
-    @Column(name = "display_location")
-    String display_location;
-    @Column(name = "lat")
-    long latitude = 0;
-    @Column(name = "long")
-    long longitude = 0;
-
-
     @OneToMany(mappedBy = "bike")
     List<Slot> slot_list = new ArrayList<>();
-
     //thong tin lien quan
     @Column(name = "description")
     String description;
@@ -45,8 +35,14 @@ public class Bike implements Serializable {
     String no_plate;
     @Column(name = "capacity")
     String capacity;
-    @Column(name = "city_id")
-    String city_id;
-
+    //vi tri
+    @Column(name = "display_location")
+    String display_location;
+    @Column(name = "_lat")
+    long latitude = 0;
+    @Column(name = "_long")
+    long longitude = 0;
+    @Column(name = "_isAvaiable")
+    boolean _isAvaiable;
 
 }
