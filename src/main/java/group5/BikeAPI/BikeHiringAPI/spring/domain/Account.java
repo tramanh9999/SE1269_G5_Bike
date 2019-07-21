@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(notes = "Id")
+    @ApiModelProperty(notes = "account_id")
     @Column(name = "account_id")
     int id = 0;
     @Column(name = "_email")

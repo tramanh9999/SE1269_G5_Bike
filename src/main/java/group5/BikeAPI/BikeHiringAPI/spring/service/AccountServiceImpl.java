@@ -16,11 +16,9 @@ public class AccountServiceImpl implements AccountService {
     AccountRepository accountRepo;
 
 
-
-
     @Override
-    public Optional<Account> findByEmail(String email) {
-        return Optional.empty();
+    public Account findByEmail(String email) {
+        return accountRepo.findFirstByEmailIsLike(email);
     }
 
     public List<Account> all() {
@@ -39,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean insert(Account a) {
 
-        if(findByEmail(a.getEmail())== null){
+        if (findByEmail(a.getEmail()) == null) {
             accountRepo.save(a);
             return true;
         }

@@ -55,7 +55,7 @@ public class AccountController {
     public ResponseEntity<Account> insert(@ApiParam(value = "Account's data would like to insert ", required = true)
                                           @RequestBody Account account) {
 
-        if (accountService.insert(account)) {
+        if (accountService.insert(account)){
             int insert_id = accountService.getLastIndex();
             return ResponseEntity.created(URI.create("/accounts/" + insert_id)).body(accountService.findById(insert_id).get());
         } else {

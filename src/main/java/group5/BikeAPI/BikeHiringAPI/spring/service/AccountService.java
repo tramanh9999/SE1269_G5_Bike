@@ -20,7 +20,7 @@ public interface AccountService {
 
     Optional<Account> findById(int id);
 
-    Optional<Account> findByEmail(String email);
+    Account findByEmail(String email);
 
     int getLastIndex();
 
