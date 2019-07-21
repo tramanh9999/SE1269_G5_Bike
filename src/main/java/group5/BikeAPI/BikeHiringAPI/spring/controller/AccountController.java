@@ -46,6 +46,11 @@ public class AccountController {
 
 
     @ApiOperation("Insert a account ")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Insert successfully"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 403, message = "This data is forbidden"),
+            })
     @PostMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Account> insert(@ApiParam(value = "Account's data would like to insert ", required = true)
                                        @RequestBody Account account) {
