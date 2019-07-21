@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account{
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "Id")
@@ -22,6 +22,9 @@ public class Account{
     @Column(name = "_email")
     @ApiModelProperty(notes = "email address")
     String email;
+    @Column(name = "_name")
+    @ApiModelProperty(notes = "Display name")
+    String username;
     @Column(name = "_phone")
     @ApiModelProperty(notes = "phone string")
     String phone;
