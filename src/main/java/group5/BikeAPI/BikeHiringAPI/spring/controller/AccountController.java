@@ -97,6 +97,21 @@ public class AccountController {
     }
 
 
+    @ApiOperation("Get an account by email")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Insert successfully"),
+            @ApiResponse(code = 404, message = "Not found")
+    })
+    @PutMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Account> getByEmail(
+            @ApiParam(value = "Email of account would be retrieved",
+                    required = true)
+             @Valid @RequestBody String email) throws ResourceNotFoundException {
+        Account acc = accountService.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Account not found for this email :: " + email));
+        return ResponseEntity.ok().body(acc);
+    }
+
+
     @ApiOperation("Delete an acocunt")
     @DeleteMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Boolean> delete(

@@ -17,8 +17,10 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public Account findByEmail(String email) {
-        return accountRepo.findFirstByEmailIsLike(email);
+    public Optional<Account> findByEmail(String email) {
+        Optional<Account> optional = new Optional<>(accountRepo.findFirstByEmailIsLike(email));
+
+        return optional;
     }
 
     public List<Account> all() {
