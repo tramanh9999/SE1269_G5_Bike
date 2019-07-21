@@ -55,7 +55,7 @@ public class AccountController {
     public ResponseEntity<Account> insert(@ApiParam(value = "Account's data would like to insert ", required = true)
                                           @RequestBody Account account) {
 
-        if (accountService.insert(account)){
+        if (accountService.insert(account)) {
             int insert_id = accountService.getLastIndex();
             return ResponseEntity.created(URI.create("/accounts/" + insert_id)).body(accountService.findById(insert_id).get());
         } else {
@@ -102,11 +102,11 @@ public class AccountController {
             @ApiResponse(code = 201, message = "Insert successfully"),
             @ApiResponse(code = 404, message = "Not found")
     })
-    @PutMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Account> getByEmail(
-            @ApiParam(value = "Email of account would be retrieved",
-                    required = true)
-             @Valid @RequestBody String email) throws ResourceNotFoundException {
+
+            @ApiParam(value = "Email of account would be retrieved", required = true)
+            @Valid @RequestParam("email") String email) throws ResourceNotFoundException {
         Account acc = accountService.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Account not found for this email :: " + email));
         return ResponseEntity.ok().body(acc);
     }
