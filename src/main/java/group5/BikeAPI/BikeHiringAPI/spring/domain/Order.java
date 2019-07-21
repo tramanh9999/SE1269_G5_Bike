@@ -19,14 +19,17 @@ public class Order {
     int id;
 
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id", foreignKey = @ForeignKey(name = "account_id"))
+    @JoinColumns({
+            @JoinColumn(name = "account_id", foreignKey = @ForeignKey(name = "account_id"), referencedColumnName = "account_id")
+            , @JoinColumn(name = "_email", foreignKey = @ForeignKey(name = "_email"), referencedColumnName = "_email")
+    }
+    )
+
     Account account;
     @OneToOne
     @JoinColumn(name = "bike_id", foreignKey = @ForeignKey(name = "bike_id"))
     Bike bike;
-
 
 
     @Column(name = "order_date")

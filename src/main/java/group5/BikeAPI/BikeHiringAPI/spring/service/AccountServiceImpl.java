@@ -38,8 +38,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public boolean insert(Account a) {
-        accountRepo.save(a);
-        return true;
+
+        if(findByEmail(a.getEmail())== null){
+            accountRepo.save(a);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
