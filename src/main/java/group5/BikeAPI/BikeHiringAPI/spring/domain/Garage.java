@@ -16,6 +16,7 @@ import java.util.List;
 public class Garage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "garage_id")
     int id = 0;
     @Column(name = "_name")
     String name;
@@ -35,7 +36,6 @@ public class Garage {
     long balance = 0L;
     @OneToMany
     List<Image> imageList;
-
     @OneToMany
     List<Bike> bikeList;
 }

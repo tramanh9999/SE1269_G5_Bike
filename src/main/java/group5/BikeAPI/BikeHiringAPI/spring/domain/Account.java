@@ -38,7 +38,7 @@ public class Account implements Serializable {
     long balance = 0L;
     @Column(name = "_avatar")
     String avatar;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "_garage")
     Garage garage;
 }

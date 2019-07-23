@@ -34,7 +34,7 @@ public class BikeController {
 
     @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
     @ApiOperation(value = "Get all bikes by garageid")
-    @GetMapping(value = "/bikes/garages/gid", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/bikes/garages/{gid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Bike> getBikesByGid(@PathVariable("gid") int gid) {
         return BikeService.findByGarageId(gid);
     }

@@ -1,6 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,16 +16,18 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties("garage")
 public class Bike implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   public  int id = 0;
+    public int id = 0;
     //thong tin chinh
     @Column(name = "_name")
     String name;
     @OneToMany
     List<Image> imageList;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "garage_id")
     Garage garage;
     @OneToMany(mappedBy = "bike")
     List<Slot> slot_list = new ArrayList<>();
