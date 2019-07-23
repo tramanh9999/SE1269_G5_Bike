@@ -5,6 +5,7 @@ import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
 import group5.BikeAPI.BikeHiringAPI.spring.service.AccountService;
 import group5.BikeAPI.BikeHiringAPI.spring.service.GarageService;
 import io.swagger.annotations.*;
+import org.hibernate.TransientPropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.MediaType;
@@ -86,7 +87,10 @@ public class AccountController {
         Garage garage = new Garage();
         garage.setId(gid);
         acc.setGarage(garage);
-        accountService.updateById(account_id, acc);
+
+            accountService.updateById(account_id, acc);
+
+
         return ResponseEntity.ok().body(accountService.findById(account_id).get());
     }
 
@@ -107,19 +111,7 @@ public class AccountController {
 //
 //    }
 
-    @ApiOperation("Update an acocunt")
-    @PutMapping(value = "/accounts/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Account> update(
-            @ApiParam(value = "Account's id of the account would be edit",
-                    required = true)
-            @PathVariable("id") Integer id, @ApiParam(value = "Account's data of the account would be edit", required = true) @Valid @RequestBody Account account) throws ResourceNotFoundException {
-        Account acc = accountService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
-        acc.setBalance(account.getBalance());
-        acc.setEmail(account.getEmail());
-        acc.setBalance(account.getBalance());
-        accountService.updateById(id, acc);
-        return ResponseEntity.ok().body(acc);
-    }
+
 
     @ApiOperation("Get an account by email")
     @ApiResponses(value = {
@@ -152,4 +144,6 @@ public class AccountController {
 
 
     }
+
+    //todo create money transaction
 }
