@@ -24,4 +24,6 @@ public interface BikeService {
     //map with getlastinddex in repo
     int getLastIndex();
 
+    List<Bike>  findByGarageId(int gid);
+
 }

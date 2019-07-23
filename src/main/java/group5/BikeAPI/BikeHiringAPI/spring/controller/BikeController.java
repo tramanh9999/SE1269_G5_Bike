@@ -23,12 +23,23 @@ public class BikeController {
     @Autowired
     BikeService BikeService;
 
+
+
     @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
     @ApiOperation(value = "Get all bikes")
     @GetMapping(value = "/bikes/all", produces = MediaType.APPLICATION_JSON_VALUE)
-       public List<Bike> all() {
+    public List<Bike> all() {
         return BikeService.all();
     }
+
+    @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
+    @ApiOperation(value = "Get all bikes by garageid")
+    @GetMapping(value = "/bikes/garages/gid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Bike> getBikesByGid(@PathVariable("gid") int gid) {
+        return BikeService.findByGarageId(gid);
+    }
+// todo get bike near bike
+
 
     @ApiOperation(value = "Get first amount of bikes")
     @GetMapping(value = "/bikes/all/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,19 +58,21 @@ public class BikeController {
         return ResponseEntity.ok().body(acc);
     }
 
+
+
+
+
+
     @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
     @ApiOperation("Insert bike")
     @PostMapping(value = "/bikes", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bike> insert(@ApiParam(value = "Bike's data would like to insert", required = true)
-                                           @RequestBody Bike Bike) throws HttpClientErrorException.BadRequest {
-
+                                       @RequestBody Bike Bike) throws HttpClientErrorException.BadRequest {
         Bike.setId(0);
         BikeService.insert(Bike);
-
         URI uri= URI.create(String.valueOf(Bike.getId()));
         return ResponseEntity.created(uri).body(Bike);
     }
-
 
 
 
@@ -89,13 +102,15 @@ public class BikeController {
         return ResponseEntity.ok().body(BikeService.findById(id).get());
     }
 
-    @DeleteMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Bike> delete(
-            @ApiParam(value = "Bike's id of the Bike would be delete", required = true) @PathVariable("id") Integer id) throws
+    @PostMapping(value = "/bikes/garages/{gid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Bike> createAndInsertIntoGarage(
+            @RequestBody Bike bike) throws
             ResourceNotFoundException {
-        Bike acc = BikeService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Bike not found for this id :: " + id));
-        BikeService.deleteById(id);
-        return ResponseEntity.noContent().build();
+
+        //garage id would be insert in bike
+        BikeService.insert(bike);
+        return ResponseEntity.ok().build();
+
     }
 
 }

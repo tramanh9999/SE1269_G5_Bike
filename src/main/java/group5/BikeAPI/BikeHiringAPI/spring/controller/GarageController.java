@@ -1,6 +1,8 @@
 package group5.BikeAPI.BikeHiringAPI.spring.controller;
 
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Account;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
+import group5.BikeAPI.BikeHiringAPI.spring.service.AccountService;
 import group5.BikeAPI.BikeHiringAPI.spring.service.GarageService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,22 @@ public class GarageController {
         return ResponseEntity.ok().body(garageOptional.get());
     }
 
+    @ApiOperation("Insert a Garage own by an account by account id, return garage that just saved by id of post garage")
+    @PostMapping(value = "/Garages/accounts/{account_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Garage> insertByAccountId
+            (@ApiParam(value = "Garage's data would be inserted",
+                    required = true) @PathVariable int account_id,
+             @RequestBody Garage garage) {
+
+        Account account = accountService.findById(account_id).get();
+        account.setGarage(garage);
+        accountService.updateById(account_id, account);
+        return ResponseEntity.ok().build();
+    }
+
+    @Autowired
+    AccountService accountService;
+
 
 //    @ApiOperation("Check if exist an Garage by its email ")
 //    @PostMapping(value = "/Garages", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -98,5 +116,7 @@ public class GarageController {
                 .orElseThrow(() -> new ResourceNotFoundException("Garage not found for this id :: " + id));
         garageService.deleteById(id);
         return ResponseEntity.noContent().build();
-            }
+    }
+
+
 }

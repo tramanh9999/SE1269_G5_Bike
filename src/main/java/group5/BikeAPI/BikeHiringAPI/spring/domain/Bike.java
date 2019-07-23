@@ -18,7 +18,7 @@ import java.util.List;
 public class Bike implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id = 0;
+   public  int id = 0;
     //thong tin chinh
     @Column(name = "_name")
     String name;

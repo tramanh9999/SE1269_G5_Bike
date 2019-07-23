@@ -1,7 +1,9 @@
 package group5.BikeAPI.BikeHiringAPI.spring.controller;
 
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Account;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
 import group5.BikeAPI.BikeHiringAPI.spring.service.AccountService;
+import group5.BikeAPI.BikeHiringAPI.spring.service.GarageService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -44,6 +46,9 @@ public class AccountController {
     }
 
 
+
+
+
     @ApiOperation("Insert a account ")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Insert successfully"),
@@ -62,7 +67,28 @@ public class AccountController {
             return ResponseEntity.noContent().build();
         }
     }
-    //todo: get garage of acocunt
+
+    @Autowired
+    GarageService garageService;
+
+    @ApiOperation("Link an account to new garage by their id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = " successfully"),
+            @ApiResponse(code = 400, message = "Bad request"),
+
+
+    })
+    @PostMapping(value = "/accounts/{account_id}/garages/{gid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Account> linkAccountToGarage(@ApiParam(value = "Link account to an garage by their id", required = true)
+                                                       @PathVariable("account_id") int account_id, @PathVariable("gid") int gid) {
+
+        Account acc = accountService.findById(account_id).orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + account_id));
+        Garage garage = new Garage();
+        garage.setId(gid);
+        acc.setGarage(garage);
+        accountService.updateById(account_id, acc);
+        return ResponseEntity.ok().body(accountService.findById(account_id).get());
+    }
 
 
 //    @ApiOperation("Check if exist an account by its email ")
@@ -91,20 +117,18 @@ public class AccountController {
         acc.setBalance(account.getBalance());
         acc.setEmail(account.getEmail());
         acc.setBalance(account.getBalance());
-
         accountService.updateById(id, acc);
         return ResponseEntity.ok().body(acc);
     }
-
 
     @ApiOperation("Get an account by email")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Insert successfully"),
             @ApiResponse(code = 404, message = "Not found")
     })
+
     @GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Account> getByEmail(
-
             @ApiParam(value = "Email of account would be retrieved", required = true)
             @Valid @RequestParam("email") String email) throws ResourceNotFoundException {
         Account acc = accountService.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Account not found for this email :: " + email));
@@ -125,5 +149,7 @@ public class AccountController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+
+
     }
 }

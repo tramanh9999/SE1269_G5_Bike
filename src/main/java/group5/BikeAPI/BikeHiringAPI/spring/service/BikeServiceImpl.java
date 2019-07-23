@@ -78,6 +78,11 @@ public class BikeServiceImpl implements BikeService {
     }
 
     @Override
+    public List<Bike> findByGarageId(int gid) {
+       return bikeRepository.findAllByGarageId(gid);
+    }
+
+    @Override
     public boolean insert(Bike a) {
 //        try {
 //            Gson gson = new Gson();
