@@ -35,7 +35,7 @@ public class Account implements Serializable {
     String phone;
     @Column(name = "_balance")
     @ApiModelProperty(notes = "balance")
-    long balance = 0L;
+    double balance = 0;
     @Column(name = "_avatar")
     String avatar;
     @OneToOne

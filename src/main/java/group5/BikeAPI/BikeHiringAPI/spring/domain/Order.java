@@ -32,12 +32,12 @@ public class Order {
     @Column(name = "delivery_location")
     String delivery_location;
     @Column(name = "lat")
-    Long latitude;
+    double latitude;
     @Column(name = "_long")
-    Long longitude;
+    double longitude;
     // store like:  7:30AM - 9:30AM/300000|
     @Column(name = "slot_list")
     String slot_list;
     @Column(name = "total_fee")
-    Long total_fee;
+    double total_fee;
 }

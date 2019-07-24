@@ -42,9 +42,9 @@ public class Bike implements Serializable {
     @Column(name = "display_location")
     String display_location;
     @Column(name = "_lat")
-    long latitude = 0;
+    double latitude = 0;
     @Column(name = "_long")
-    long longitude = 0;
+    double longitude = 0;
     @Column(name = "_isAvaiable")
     boolean _isAvaiable;
 

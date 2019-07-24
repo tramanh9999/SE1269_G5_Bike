@@ -27,13 +27,13 @@ public class Garage {
     @Column(name = "description")
     String description;
     @Column(name = "lat")
-    long latitude = 0;
+    double latitude = 0;
     @Column(name = "_long")
-    long longitude = 0;
+    double longitude = 0;
     @Column(name = "display_location")
     String display_location;
     @Column(name = "_balance")
-    long balance = 0L;
+    double balance = 0L;
     @OneToMany
     List<Image> imageList;
     @OneToMany

@@ -20,7 +20,7 @@ public class Slot implements Serializable {
     @Column(name = "slot_end")
     String slot_end;
     @Column(name = "fee")
-    long fee;
+    double fee;
 
     @ManyToOne
     @JoinColumn(name = "bike_id",foreignKey = @ForeignKey(name = "bike_id"))
