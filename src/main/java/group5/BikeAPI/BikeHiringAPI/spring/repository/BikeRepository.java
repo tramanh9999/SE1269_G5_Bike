@@ -17,4 +17,7 @@ public interface BikeRepository extends JpaRepository<Bike, Integer> {
 
     @Query(value = "select b from tbl_bike b  where b.garage_id=?1", nativeQuery = true)
     List<Bike> findAllByGarageId( int gid);
+
+
+
 }

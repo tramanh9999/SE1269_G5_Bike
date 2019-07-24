@@ -1,6 +1,7 @@
 package group5.BikeAPI.BikeHiringAPI.spring.controller;
 
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Bike;
+import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
 import group5.BikeAPI.BikeHiringAPI.spring.domain.Slot;
 import group5.BikeAPI.BikeHiringAPI.spring.service.BikeService;
 import io.swagger.annotations.*;
@@ -62,21 +63,6 @@ public class BikeController {
 
 
 
-
-    @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
-    @ApiOperation("Insert bike")
-    @PostMapping(value = "/bikes", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Bike> insert(@ApiParam(value = "Bike's data would like to insert", required = true)
-                                       @RequestBody Bike Bike) throws HttpClientErrorException.BadRequest {
-        Bike.setId(0);
-        BikeService.insert(Bike);
-        URI uri= URI.create(String.valueOf(Bike.getId()));
-        return ResponseEntity.created(uri).body(Bike);
-    }
-
-
-
-
     @ApiOperation("Update bike by id")
     @PutMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bike> update(@ApiParam(value = "Id of the Bike would be updated", required = true)
@@ -104,11 +90,14 @@ public class BikeController {
 
     @PostMapping(value = "/bikes/garages/{gid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bike> createAndInsertIntoGarage(
-            @RequestBody Bike bike) throws
+            @RequestBody Bike bike,  @PathVariable("gid") Integer gid) throws
             ResourceNotFoundException {
 
         //garage id would be insert in bike
         BikeService.insert(bike);
+        Garage garage= new Garage();
+        garage.setId(gid);
+        bike.setGarage(garage);
         return ResponseEntity.ok().build();
 
     }
