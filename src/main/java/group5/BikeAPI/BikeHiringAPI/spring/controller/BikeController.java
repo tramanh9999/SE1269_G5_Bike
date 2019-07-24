@@ -96,7 +96,6 @@ public class BikeController {
         bike.setGarage(garage);
         BikeService.insert(bike);
         return ResponseEntity.ok().build();
-
     }
 
     @DeleteMapping(value = "/bikes/{bid}", produces = MediaType.APPLICATION_JSON_VALUE)

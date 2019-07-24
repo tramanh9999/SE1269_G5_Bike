@@ -68,10 +68,12 @@ public class GarageController {
              @RequestBody Garage garage) {
 
         Account account = accountService.findById(account_id).get();
+        garageService.insert(garage);
         account.setGarage(garage);
         accountService.updateById(account_id, account);
         return ResponseEntity.ok().build();
     }
+
 
     @Autowired
     AccountService accountService;
