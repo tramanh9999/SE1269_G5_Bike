@@ -32,20 +32,23 @@ public class BikeController {
         return BikeService.all();
     }
 
+
+    @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
+    @ApiOperation(value = "Delete bike")
+    @DeleteMapping(value = "/bikes/{bid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Bike> delete(@PathVariable("bid") int bid) {
+        BikeService.deleteById(bid);
+        return ResponseEntity.ok().build();
+    }
+
+
     @CrossOrigin(origins = "http://fe-bk.surge.sh", allowCredentials = "true")
     @ApiOperation(value = "Get all bikes by garageid")
     @GetMapping(value = "/bikes/garages/{gid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Bike> getBikesByGid(@PathVariable("gid") int gid) {
         return BikeService.findByGarageId(gid);
     }
-// todo get bike near bike
 
-
-    @ApiOperation(value = "Get first amount of bikes")
-    @GetMapping(value = "/bikes/all/{amount}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Bike> getAmount(@PathVariable("amount") Integer amount) {
-        return BikeService.getAmount(amount);
-    }
 
     @ApiOperation("Get bike by id")
     @GetMapping(value = "/bikes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,7 +57,6 @@ public class BikeController {
         Bike acc = BikeService.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Bike not found for this id " +
                         ":: " + id));
-
         return ResponseEntity.ok().body(acc);
     }
 

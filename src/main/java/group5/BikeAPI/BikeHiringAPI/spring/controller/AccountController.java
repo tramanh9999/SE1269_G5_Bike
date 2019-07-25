@@ -5,7 +5,6 @@ import group5.BikeAPI.BikeHiringAPI.spring.domain.Garage;
 import group5.BikeAPI.BikeHiringAPI.spring.service.AccountService;
 import group5.BikeAPI.BikeHiringAPI.spring.service.GarageService;
 import io.swagger.annotations.*;
-import org.hibernate.TransientPropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.MediaType;
@@ -47,9 +46,6 @@ public class AccountController {
     }
 
 
-
-
-
     @ApiOperation("Insert a account ")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Insert successfully"),
@@ -88,7 +84,7 @@ public class AccountController {
         garage.setId(gid);
         acc.setGarage(garage);
 
-            accountService.updateById(account_id, acc);
+        accountService.updateById(account_id, acc);
 
 
         return ResponseEntity.ok().body(accountService.findById(account_id).get());
@@ -110,7 +106,6 @@ public class AccountController {
 //        return map;
 //
 //    }
-
 
 
     @ApiOperation("Get an account by email")
