@@ -100,13 +100,13 @@ public class BikeController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping(value = "/bikes/{bid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Bike> createAndInsertIntoGarage(
-            @PathVariable("bid") int bid) throws
-            ResourceNotFoundException {
-        BikeService.deleteById(bid);
-        return ResponseEntity.ok().build();
-
-    }
+//    @DeleteMapping(value = "/bikes/{bid}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Bike> createAndInsertIntoGarage(
+//            @PathVariable("bid") int bid) throws
+//            ResourceNotFoundException {
+//        BikeService.deleteById(bid);
+//        return ResponseEntity.ok().build();
+//
+//    }
 
 }
