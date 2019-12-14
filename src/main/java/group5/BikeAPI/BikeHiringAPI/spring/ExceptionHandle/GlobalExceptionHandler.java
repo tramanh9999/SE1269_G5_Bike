@@ -13,17 +13,17 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(group5.BikeAPI.BikeHiringAPI.spring.ExceptionHandle.ResourseNotFoundException.class)
-    public ResponseEntity<?> resourseNotFoundException(ResourseNotFoundException ex, WebRequest request) {
-        ErrorDetail ed = new ErrorDetail(ex.getMessage(), request.getDescription(false), new Date() );
-        return new ResponseEntity<>(ed, HttpStatus.NOT_FOUND);
-    }
-
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> globalException(Exception ex, WebRequest request) {
-        ErrorDetail ed = new ErrorDetail(ex.getMessage(), request.getDescription(false), new Date());
-        return new ResponseEntity<>(ed, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(group5.BikeAPI.BikeHiringAPI.spring.ExceptionHandle.ResourseNotFoundException.class)
+//    public ResponseEntity<?> resourseNotFoundException(ResourseNotFoundException ex, WebRequest request) {
+//        ErrorDetail ed = new ErrorDetail(ex.getMessage(), request.getDescription(false), new Date() );
+//        return new ResponseEntity<>(ed, HttpStatus.NOT_FOUND);
+//    }
+//
+//
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<?> globalException(Exception ex, WebRequest request) {
+//        ErrorDetail ed = new ErrorDetail(ex.getMessage(), request.getDescription(false), new Date());
+//        return new ResponseEntity<>(ed, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
 }
